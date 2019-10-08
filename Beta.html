@@ -1,0 +1,594 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SourceLair - Online IDE for Python, Django, HTML, JavaScript, Ruby, Node and more</title>
+        <meta charset="utf-8" />
+        <meta name="theme-color" content="#015976">
+        <meta name="description" content="SourceLair is an online software development environment that lets you develop your Django (Python, HTML, CSS, JavaScript) projects with its intuitive IDE, without having to install anything. Additionally, SourceLair supports a vast variety of runtimes including C/C++, Objective-C, Lua, Ruby, Node.js and more."/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+        <link rel="stylesheet" type="text/css" href="https://b7a76005a0a446e85d08-b5d6e272c189573425a0e605bc741dd0.ssl.cf1.rackcdn.com/app/dist/main.f1ee4e1e9432.css" />
+        <link rel="shortcut icon" href="https://b7a76005a0a446e85d08-b5d6e272c189573425a0e605bc741dd0.ssl.cf1.rackcdn.com/app/assets/img/favicon.a7f484c47307.ico" />
+        <link rel="apple-touch-icon-precomposed" href="https://b7a76005a0a446e85d08-b5d6e272c189573425a0e605bc741dd0.ssl.cf1.rackcdn.com/app/assets/img/retina-favicon.c9a72391c9b4.png">
+        <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+</script>
+
+    </head>
+    <body class="no-overflow">
+        <main id="app" class="center-vertical hidden">
+            <div id="fullscreen-container" class="hidden"></div>
+
+            <div id="sidebar" class="unselectable">
+                <div class="button-group">
+                    <div id="avatar-main" class="avatar-container bubble--right" data-bubble="Open your account settings">
+                        <img id="user-image" src="https://www.gravatar.com/avatar/" />
+                    </div>
+                    <div class="separator"></div>
+                </div>
+
+                <div id="manage-projects-controls" class="button-group">
+                    <button id="start-project" class="button pin-button bubble--right" data-bubble="Start a new Project">
+                        <div class="icon">
+                            <div class="icon-img-container"></div>
+                        </div>
+                    </button>
+                    <button id="switch-project" class="button pin-button bubble--right" data-bubble="Switch Project">
+                        <div class="icon">
+                            <div class="icon-img-container"></div>
+                        </div>
+                    </button>
+                    <div class="separator">
+
+                    </div>
+                </div>
+
+                <div id="scm-controls" class="button-group">
+                    <button id="commit" class="button pin-button bubble--right" data-bubble="Commit">
+                        <div class="icon">
+                            <div class="icon-img-container"></div>
+                        </div>
+                    </button>
+                    <button id="push" class="button pin-button bubble--right" data-bubble="Push">
+                        <div class="icon">
+                            <div class="icon-img-container"></div>
+                        </div>
+                    </button>
+                    <button id="pull" class="button pin-button bubble--right" data-bubble="Pull">
+                        <div class="icon">
+                            <div class="icon-img-container"></div>
+                        </div>
+                    </button>
+                    <div class="separator">
+
+                    </div>
+                </div>
+
+                <div id="ide-controls" class="button-group">
+                    <button id="toggle-command-palette" class="button pin-button bubble--right" data-bubble="Open the Command Palette (Ctrl+Shift+P)">
+                        <div class="icon">
+                            <div class="icon-img-container"></div>
+                        </div>
+                    </button>
+                    <button id="toggle-file-explorer" class="button pin-button bubble--right" data-bubble="Toggle the File Explorer (Ctrl+\)">
+                        <div class="icon">
+                            <div class="icon-img-container"></div>
+                        </div>
+                    </button>
+                    <button id="toggle-terminal" class="button pin-button bubble--right" data-bubble="Toggle Terminal (Alt+T)">
+                        <div class="icon">
+                            <div class="icon-img-container"></div>
+                        </div>
+                    </button>
+                    <div class="separator">
+
+                    </div>
+                </div>
+
+                <div id="project-controls" class="button-group">
+                    <div class="server-specific">
+                        <button id="run-project" class="button pin-button bubble--right" data-bubble="Start Server">
+                            <div class="icon">
+                                <div class="icon-img-container"></div>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="server-specific">
+                        <button id="preview-project" class="button pin-button bubble--right" data-bubble="Open Project's public URL">
+                            <div class="icon">
+                                <div class="icon-img-container"></div>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="common">
+
+                    </div>
+                    <div class="separator">
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button id="contact" class="button pin-button bubble--right" data-bubble="Ask for some help">
+                        <div class="icon">
+                            <div class="icon-img-container"></div>
+                        </div>
+                    </button>
+                    <a href="/account/billing/plan" target="_blank" class="hidden" id="upgrade-link">
+                        <button id="upgrade" class="button pin-button bubble--right" data-bubble="Upgrade account">
+                            <div class="icon">
+                                <div class="icon-img-container"></div>
+                            </div>
+                        </button>
+                    </a>
+                    <div class="separator"></div>
+                </div>
+
+                <div id="more-options-container" class="hidden">
+                    <button id="more" class="button pin-button bubble--right" data-bubble="Show more actions">
+                        <div class="icon">
+                            <div class="icon-img-container"></div>
+                        </div>
+                    </button>
+                    <div id="more-space" class="hidden raised-medium">
+
+                    </div>
+                </div>
+
+                <button id="logout" class="button pin-button bubble--right" data-bubble="Log out">
+                    <div class="icon">
+                        <div class="icon-img-container"></div>
+                    </div>
+                </button>
+            </div>
+
+            <div id="ide" class="workspace active split-layout-container split-horizontal split-transparent-gutter">
+                <div class="file-explorer split-layout-element" > <!-- retracted -->
+                    <div class="project-header">
+                        <div class="utility-bar">
+                            <button class="project-settings button chrome-button bubble--bottom unselectable bubble--right" data-bubble="Open project details">
+                                <div class="icon">
+                                    <div class="icon-img-container"></div>
+                                </div>
+                            </button>
+                            <div class="project-label">
+                                <span class="project-name" title="Project Name full"></span>
+                                <span class="after actionable"></span>
+                            </div>
+                        </div>
+                        <div class="utility-bar">
+                            <div class="project-buttons unselectable">
+                                <div class="container clearfix">
+                                    <button id="new-file" class="new-file button chrome-button bubble--bottom" data-bubble="Create new File">
+                                        <div class="icon">
+                                            <div class="icon-img-container"></div>
+                                        </div>
+                                    </button>
+                                    <button id="new-folder" class="new-folder button chrome-button bubble--bottom" data-bubble="Create new Folder">
+                                        <div class="icon">
+                                            <div class="icon-img-container"></div>
+                                        </div>
+                                    </button>
+                                    <div id="upload-file-button" class="button chrome-button bubble--bottom bubble--right" data-bubble="Upload files">
+                                        <div class="icon">
+                                            <div class="icon-img-container"></div>
+                                        </div>
+                                        <form>
+                                            <label>
+                                                <input type="file" multiple />
+                                            </label>
+                                        </form>
+                                    </div>
+                                    <div id="search-file-button" class="button chrome-button bubble--bottom bubble--right" data-bubble="Search files">
+                                        <div class="icon">
+                                            <div class="icon-img-container"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="project-files">
+                        <div class="container">
+                        </div>
+                    </div>
+                </div>
+                <div class="split-layout-gutter"></div>
+                <div id="editor-terminal-container" class="panel-components no-explorer split-layout-element split-layout-container split-vertical split-transparent-gutter">
+                    <div class="editor-panel split-layout-element">
+                        <div class="editor-container">
+                            <div class="controls-bar unselectable">
+                                <div class="actions container clearfix left">
+                                    <button class="run-file button chrome-button with-text hidden">
+                                        <div class="icon">
+                                            <div class="icon-img-container"></div>
+                                        </div>
+                                        <span>Run File</span>
+                                    </button>
+                                    <button class="preview-file button chrome-button with-text ">
+                                        <div class="icon">
+                                            <div class="icon-img-container"></div>
+                                        </div>
+                                        <span>Preview File</span>
+                                    </button>
+                                </div>
+                                <div class="actions container clearfix right">
+                                    <button class="languages button chrome-button">
+                                        <span class="lang-name"></span>
+                                    </button>
+                                    <button class="hide-tabs button chrome-button">
+                                        <div class="icon">
+                                            <div class="icon-img-container"></div>
+                                        </div>
+                                    </button>
+                                    <div class="button action show-all-tabs bubble--bottom bubble--right hidden" data-bubble="Show all tabs">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="editor"></div>
+                        </div>
+                    </div>
+                    <div class="split-layout-gutter"></div>
+                    <div class="terminal-panel split-layout-element"> <!-- +class retracted -->
+                        <div class="tabs container"></div>
+                        <div class="terminal-container">
+                            <button class="button pin-button toggle-console-fullscreen">
+                                <div class="icon">
+                                    <div class="icon-img-container"></div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="loading-screen center-vertical transparent">
+            <div class="contents-container">
+                <div class="text-container">SourceLair is loading...</div>
+                <div class="animation-container">
+                    <div class="rectangles rect1"></div>
+                    <div class="rectangles rect2"></div>
+                    <div class="rectangles rect3"></div>
+                    <div class="rectangles rect4"></div>
+                    <div class="rectangles rect5"></div>
+                </div>
+            </div>
+        </div>
+        <div id="prompts-container" class=""></div>
+
+        <!--TEMPORARY SOLUTION, QUICKSETTINGS STRUCTURE -->
+        <div class="raised options-bar unselectable">
+            <div class="theme-thumb" data-value="3024-day light">
+                <div class="theme-name">3024 day</div>
+                <img class="theme-image img-3024-day" alt="3024 day" id="editorTheme-3024-day"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="3024 day">
+            </div>
+            <div class="theme-thumb" data-value="3024-night dark">
+                <div class="theme-name">3024 night</div>
+                <img class="theme-image img-3024-night" alt="3024 night" id="editorTheme-3024-night"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="3024 night">
+            </div>
+            <div class="theme-thumb" data-value="abcdef dark">
+                <div class="theme-name">Abcdef</div>
+                <img class="theme-image abcdef" alt="Abcdef" id="editorTheme-abcdef"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Abcdef">
+            </div>
+            <div class="theme-thumb" data-value="ambiance dark">
+                <div class="theme-name">Ambiance</div>
+                <img class="theme-image ambiance" alt="Ambiance" id="editorTheme-ambiance"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Ambiance">
+            </div>
+            <div class="theme-thumb" data-value="base16-dark dark">
+                <div class="theme-name">Base16 dark</div>
+                <img class="theme-image base16-dark" alt="Base16 dark" id="editorTheme-base16-dark"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Base16 dark">
+            </div>
+            <div class="theme-thumb" data-value="base16-light light">
+                <div class="theme-name">Base16 light</div>
+                <img class="theme-image base16-light" alt="Base16 light" id="editorTheme-base16-light"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Base16 light">
+            </div>
+            <div class="theme-thumb" data-value="bespin dark">
+                <div class="theme-name">Bespin</div>
+                <img class="theme-image bespin" alt="Bespin" id="editorTheme-bespin"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Bespin">
+            </div>
+            <div class="theme-thumb" data-value="blackboard dark">
+                <div class="theme-name">Blackboard</div>
+                <img class="theme-image blackboard" alt="Blackboard" id="editorTheme-blackboard"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Blackboard">
+            </div>
+            <div class="theme-thumb" data-value="cobalt dark">
+                <div class="theme-name">Cobalt</div>
+                <img class="theme-image cobalt" alt="Cobalt" id="editorTheme-cobalt"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Cobalt">
+            </div>
+            <div class="theme-thumb" data-value="colorforth dark">
+                <div class="theme-name">Colorforth</div>
+                <img class="theme-image colorforth" alt="Colorforth" id="editorTheme-colorforth"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Colorforth">
+            </div>
+            <div class="theme-thumb" data-value="default light">
+                <div class="theme-name">Default</div>
+                <img class="theme-image default" alt="Default" id="editorTheme-default"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Default">
+            </div>
+            <div class="theme-thumb" data-value="dracula dark">
+                <div class="theme-name">Dracula</div>
+                <img class="theme-image dracula" alt="Dracula" id="editorTheme-dracula"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Dracula">
+            </div>
+            <div class="theme-thumb" data-value="eclipse light">
+                <div class="theme-name">Eclipse</div>
+                <img class="theme-image eclipse" alt="Eclipse" id="editorTheme-eclipse"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Eclipse">
+            </div>
+            <div class="theme-thumb" data-value="elegant light">
+                <div class="theme-name">Elegant</div>
+                <img class="theme-image elegant" alt="Elegant" id="editorTheme-elegant"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Elegant">
+            </div>
+            <div class="theme-thumb" data-value="erlang-dark dark">
+                <div class="theme-name">Erlang dark</div>
+                <img class="theme-image erlang-dark" alt="Erlang dark" id="editorTheme-erlang-dark"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Erlang dark">
+            </div>
+            <div class="theme-thumb" data-value="hopscotch dark">
+                <div class="theme-name">Hopscotch</div>
+                <img class="theme-image hopscotch" alt="Hopscotch" id="editorTheme-hopscotch"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Hopscotch">
+            </div>
+            <div class="theme-thumb" data-value="icecoder dark">
+                <div class="theme-name">Icecoder</div>
+                <img class="theme-image icecoder" alt="Icecoder" id="editorTheme-icecoder"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Icecoder">
+            </div>
+            <div class="theme-thumb" data-value="isotope dark">
+                <div class="theme-name">Isotope</div>
+                <img class="theme-image isotope" alt="Isotope" id="editorTheme-isotope"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Isotope">
+            </div>
+            <div class="theme-thumb" data-value="lesser-dark dark">
+                <div class="theme-name">Lesser dark</div>
+                <img class="theme-image lesser-dark" alt="Lesser dark" id="editorTheme-lesser-dark"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Lesser dark">
+            </div>
+            <div class="theme-thumb" data-value="liquibyte dark">
+                <div class="theme-name">Liquibyte</div>
+                <img class="theme-image liquibyte" alt="Liquibyte" id="editorTheme-liquibyte"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Liquibyte">
+            </div>
+            <div class="theme-thumb" data-value="material dark">
+                <div class="theme-name">Material</div>
+                <img class="theme-image material" alt="Material" id="editorTheme-material"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Material">
+            </div>
+            <div class="theme-thumb" data-value="mbo dark">
+                <div class="theme-name">MBO</div>
+                <img class="theme-image mbo" alt="MBO" id="editorTheme-mbo"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="MBO">
+            </div>
+            <div class="theme-thumb" data-value="mdn-like light">
+                <div class="theme-name">MDN like</div>
+                <img class="theme-image mdn-like" alt="MDN like" id="editorTheme-mdn-like"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="MDN like">
+            </div>
+            <div class="theme-thumb" data-value="midnight dark">
+                <div class="theme-name">Midnight</div>
+                <img class="theme-image midnight" alt="Midnight" id="editorTheme-midnight"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Midnight">
+            </div>
+            <div class="theme-thumb" data-value="monokai dark">
+                <div class="theme-name">Monokai</div>
+                <img class="theme-image monokai" alt="Monokai" id="editorTheme-monokai"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Monokai">
+            </div>
+            <div class="theme-thumb" data-value="neat light">
+                <div class="theme-name">Neat</div>
+                <img class="theme-image neat" alt="Neat" id="editorTheme-neat"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Neat">
+            </div>
+            <div class="theme-thumb" data-value="neo light">
+                <div class="theme-name">Neo</div>
+                <img class="theme-image neo" alt="Neo" id="editorTheme-neo"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Neo">
+            </div>
+            <div class="theme-thumb" data-value="night dark">
+                <div class="theme-name">Night</div>
+                <img class="theme-image night" alt="Night" id="editorTheme-night"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Night">
+            </div>
+            <div class="theme-thumb" data-value="npp light">
+                <div class="theme-name">Notepad++</div>
+                <img class="theme-image npp" alt="Notepad++" id="editorTheme-npp"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Notepad++">
+            </div>
+            <div class="theme-thumb" data-value="paraiso-dark dark">
+                <div class="theme-name">Paraiso dark</div>
+                <img class="theme-image paraiso-dark" alt="Paraiso dark" id="editorTheme-paraiso-dark"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Paraiso dark">
+            </div>
+            <div class="theme-thumb" data-value="paraiso-light">
+                <div class="theme-name">Paraiso light</div>
+                <img class="theme-image paraiso-light" alt="Paraiso light" id="editorTheme-paraiso-light"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Paraiso light">
+            </div>
+            <div class="theme-thumb" data-value="pastel-on-dark dark">
+                <div class="theme-name">Pastel on dark</div>
+                <img class="theme-image pastel-on-dark" alt="Pastel on dark" id="editorTheme-pastel-on-dark"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Pastel on dark">
+            </div>
+            <div class="theme-thumb" data-value="railscasts dark">
+                <div class="theme-name">Railscasts</div>
+                <img class="theme-image railscasts" alt="Railscasts" id="editorTheme-railscasts"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Railscasts">
+            </div>
+            <div class="theme-thumb" data-value="roboticket light">
+                <div class="theme-name">Roboticket</div>
+                <img class="theme-image roboticket" alt="Roboticket" id="editorTheme-roboticket"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Roboticket">
+            </div>
+            <div class="theme-thumb" data-value="rubyblue dark">
+                <div class="theme-name">Rubyblue</div>
+                <img class="theme-image rubyblue" alt="Rubyblue" id="editorTheme-rubyblue"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Rubyblue">
+            </div>
+            <div class="theme-thumb" data-value="seti dark">
+                <div class="theme-name">Seti</div>
+                <img class="theme-image seti" alt="Seti" id="editorTheme-seti"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Seti">
+            </div>
+            <div class="theme-thumb" data-value="solarized dark">
+                <div class="theme-name">Solarized dark</div>
+                <img class="theme-image solarized-dark" alt="Solarized dark" id="editorTheme-solarized-dark"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Solarized dark">
+            </div>
+            <div class="theme-thumb" data-value="solarized light">
+                <div class="theme-name">Solarized light</div>
+                <img class="theme-image solarized-light" alt="Solarized light" id="editorTheme-solarized-light"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Solarized light">
+            </div>
+            <div class="theme-thumb" data-value="the-matrix dark">
+                <div class="theme-name">The matrix</div>
+                <img class="theme-image the-matrix" alt="The matrix" id="editorTheme-the-matrix"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="The matrix">
+            </div>
+            <div class="theme-thumb" data-value="tomorrow-night-bright dark">
+                <div class="theme-name">Tomorrow night bright</div>
+                <img class="theme-image tomorrow-night-bright" alt="Tomorrow night bright" id="editorTheme-tomorrow-night-bright"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Tomorrow night bright">
+            </div>
+            <div class="theme-thumb" data-value="tomorrow-night-eighties dark">
+                <div class="theme-name">Tomorrow night eighties</div>
+                <img class="theme-image tomorrow-night-eighties" alt="Tomorrow night eighties" id="editorTheme-tomorrow-night-eighties"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Tomorrow night eighties">
+            </div>
+            <div class="theme-thumb" data-value="ttcn light">
+                <div class="theme-name">TTCN</div>
+                <img class="theme-image ttcn" alt="TTCN" id="editorTheme-ttcn"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="TTCN">
+            </div>
+            <div class="theme-thumb" data-value="twilight dark">
+                <div class="theme-name">Twilight</div>
+                <img class="theme-image twilight" alt="Twilight" id="editorTheme-twilight"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Twilight">
+            </div>
+            <div class="theme-thumb" data-value="vibrant-ink dark">
+                <div class="theme-name">Vibrant ink</div>
+                <img class="theme-image vibrant-ink" alt="Vibrant ink" id="editorTheme-vibrant-ink"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Vibrant ink">
+            </div>
+            <div class="theme-thumb" data-value="xq-dark dark">
+                <div class="theme-name">Xq dark</div>
+                <img class="theme-image xq-dark" alt="Xq dark" id="editorTheme-xq-dark"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Xq dark">
+            </div>
+            <div class="theme-thumb" data-value="xq-light light">
+                <div class="theme-name">Xq light</div>
+                <img class="theme-image xq-light" alt="Xq light" id="editorTheme-xq-light"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Xq light">
+            </div>
+            <div class="theme-thumb" data-value="yeti light">
+                <div class="theme-name">Yeti</div>
+                <img class="theme-image yeti" alt="Yeti" id="editorTheme-yeti"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Yeti">
+            </div>
+            <div class="theme-thumb" data-value="zenburn dark">
+                <div class="theme-name">Zenburn</div>
+                <img class="theme-image zenburn" alt="Zenburn" id="editorTheme-zenburn"
+                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADIAQMAAACjyqroAAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAAB5JREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAA8GIgCAABQ+uX7gAAAABJRU5ErkJggg=="
+                     title="Zenburn">
+            </div>
+        </div>
+        <script>
+            var jshintPath = "https://b7a76005a0a446e85d08-b5d6e272c189573425a0e605bc741dd0.ssl.cf1.rackcdn.com/app/js/vendor/jshint/dist/jshint.76c00b85bc44.js";
+        </script>
+        <script>
+            (function initLoadingScreen(document) {
+                var main = document.querySelector('#app'),
+                    lS = document.querySelector('.loading-screen');
+                if (main.classList.contains('hidden')) {
+                    setTimeout(function() {
+                        lS.classList.remove('transparent');
+                        main.classList.add('hidden');
+                    }, 300)
+                }
+            })(window.document)
+        </script>
+        
+            <script src="https://cdn.ravenjs.com/3.25.2/raven.min.js"></script>
+            <script>
+                Raven.config('https://b6bb61dd378b4f4a949ce13d7d95d3d8@app.getsentry.com/52430', {
+                    release: '02acda89d24bae841b9546e3ed627618dbe9ad47',
+                    environment: 'production'
+                }).install()
+            </script>
+        
+        <script>!function(e,o,n){window.HSCW=o,window.HS=n,n.beacon=n.beacon||{};var t=n.beacon;t.userConfig={},t.readyQueue=[],t.config=function(e){this.userConfig=e},t.ready=function(e){this.readyQueue.push(e)},o.config={docs:{enabled:!1,baseUrl:""},contact:{enabled:!0,formId:"80bb1db2-5375-11e7-a316-0ec85169275a"}};var r=e.getElementsByTagName("script")[0],c=e.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://djtflbt20bdde.cloudfront.net/",r.parentNode.insertBefore(c,r)}(document,window.HSCW||{},window.HS||{});</script>
+
+<script>
+HS.beacon.config({
+  color: '#014358',
+  attachment: true,
+  modal: true,
+  showSubject: true
+});
+</script>
+
+
+        <script type="text/javascript" src="https://b7a76005a0a446e85d08-b5d6e272c189573425a0e605bc741dd0.ssl.cf1.rackcdn.com/app/dist/main.7afddb0f4304.js" ></script>
+    </body>
+</html>
+
